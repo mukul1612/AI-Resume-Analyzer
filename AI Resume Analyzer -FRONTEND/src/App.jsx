@@ -1,12 +1,10 @@
-import { useState } from 'react'
+import { RouterProvider } from 'react-router-dom';
+import { appRoutes } from './app.routes.jsx';
 
 function App() {
-  
-
   return (
- <>
- nk</>
-  )
+    <RouterProvider router={appRoutes} />
+  );
 }
 
-export default App
+export default App;
