@@ -5,6 +5,10 @@ import Register from "./features/auth/pages/Register";
 
 export const appRoutes = createBrowserRouter([
     {
+        path:"/",
+        element:<Login/>
+    },
+    {
         path:"/login",
         element:<Login/>
     },
