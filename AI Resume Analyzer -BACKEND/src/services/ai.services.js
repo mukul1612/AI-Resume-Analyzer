@@ -10,7 +10,7 @@ const interviewReportSchema = z.object({
     .describe(
       "A score between 0 and 100 indicating how well the candidate's profile matches the job describe",
     ),
-  technicalQuestions: z
+  technicalQuestion: z
     .array(
       z.object({
         question: z
@@ -29,7 +29,7 @@ const interviewReportSchema = z.object({
     .describe(
       "Technical questions that can be asked in the interview along with their intention and how to answer them",
     ),
-  behavioralQuestions: z
+  behavioralQuestion: z
     .array(
       z.object({
         question: z
@@ -93,8 +93,8 @@ const schema = z.toJSONSchema(interviewReportSchema);
 
 schema.required = [
   "matchScore",
-  "technicalQuestions",
-  "behavioralQuestions",
+  "technicalQuestion",
+  "behavioralQuestion",
   "skillGaps",
   "preparationPlan",
   "title",

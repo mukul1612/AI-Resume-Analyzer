@@ -7,7 +7,7 @@ async function authUser(req, res, next) {
     return res.status(401).json({ message: "Token not found" });
   }
   const istokenBlacklisted = await blacklistTokenModel.findOne({ token });
-  console.log(istokenBlacklisted,"istokenBlacklisted");
+
   if (istokenBlacklisted) {
     return res.status(401).json({ message: "Token is Invalid /blacklisted" });
   }
