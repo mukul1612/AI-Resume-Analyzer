@@ -5,7 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, loading, error, handleLogin } = useAuth();
+  const { user, loading, error, setError, handleLogin } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
@@ -21,18 +21,24 @@ const Login = () => {
       </main>
     );
   }
-  if (error) {
-    return (
-      <main>
-        <h1>
-          <p>
-            {error.message}{" "}
-            <Link onClick={() => window.location.reload()}>Try Again</Link>{" "}
-          </p>
-        </h1>
-      </main>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <main>
+  //       <h1>
+  //         <p>
+  //           {error.message}{" "}
+  //           <Link
+  //             onClick={() => {
+  //               (window.location.reload(), setError(null));
+  //             }}
+  //           >
+  //             Try Again
+  //           </Link>{" "}
+  //         </p>
+  //       </h1>
+  //     </main>
+  //   );
+  // }
   return (
     <main>
       <div className="form-container">

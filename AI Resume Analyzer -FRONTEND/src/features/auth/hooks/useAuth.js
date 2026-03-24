@@ -13,7 +13,6 @@ export const useAuth = () => {
       const response = await login({ email, password });
 
       setUser(response.userDetals);
-  
     } catch (error) {
       setError(error);
     } finally {
@@ -47,11 +46,15 @@ export const useAuth = () => {
   };
 
   const handleGetMe = async () => {
-   setLoading(true);
-    const response = await getMe({});
-    console.log(response, "jgu");
-    setUser(response.userDetals);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const response = await getMe({});
+      setUser(response.userDetals);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
