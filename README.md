@@ -49,24 +49,6 @@ A full-stack **Gen AI-powered job preparation platform** that analyzes resumes, 
    - 📅 Preparation Plan  
 5. User can also:
    - ✨ Generate a **new optimized resume** based on JD  
-
----
-
-## 📸 Screenshots
-
-### 🔐 Authentication
-- Register Page  
-- Login Page  
-
-### 📊 Dashboard & Analysis
-- Resume + JD Analysis  
-- Match Score & Skill Gap  
-
-### 🤖 AI Generated Output
-- Interview Questions  
-- Preparation Plan  
-
-
 ---
 ## 📸 Screenshots
 
@@ -89,6 +71,24 @@ A full-stack **Gen AI-powered job preparation platform** that analyzes resumes, 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/968fc876-ec60-4690-9342-4adc23d6e881" width="900"/>
 </p>
+---
+
+
+
+### 🔐 Authentication
+- Register Page  
+- Login Page  
+
+### 📊 Dashboard & Analysis
+- Resume + JD Analysis  
+- Match Score & Skill Gap  
+
+### 🤖 AI Generated Output
+- Interview Questions  
+- Preparation Plan  
+
+
+
 ---
 
 ## 🚀 Deployment
