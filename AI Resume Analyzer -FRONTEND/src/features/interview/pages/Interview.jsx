@@ -130,7 +130,7 @@ const RoadMapDay = ({ day }) => (
 // ── Main Component ────────────────────────────────────────────────────────────
 const Interview = () => {
   const [activeNav, setActiveNav] = useState("technical");
-  const { report, getReportById, loading, getResumePdf } = useInterview();
+  const { report, getReportById, loading, generatePdf } = useInterview();
   const { interviewId } = useParams();
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const Interview = () => {
           </div>
           <button
             onClick={() => {
-              //   getResumePdf(interviewId);
+              generatePdf(interviewId);
             }}
             className="button primary-button"
           >

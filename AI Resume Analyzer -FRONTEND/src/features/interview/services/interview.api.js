@@ -32,3 +32,12 @@ export const getAllinterview = async () => {
   const response = await api.get(`/api/interview/`);
   return response.data;
 };
+
+export const downloadResume = async (interviewId) => {
+  const response = await api.post(
+    `/api/interview/resume/pdf/${interviewId}`,
+    null,
+    { responseType: "blob" },
+  );
+  return response.data;
+};

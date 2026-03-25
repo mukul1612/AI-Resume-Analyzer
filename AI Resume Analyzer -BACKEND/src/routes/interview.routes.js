@@ -23,4 +23,10 @@ interviewRoute.get(
   interviewControler.getAllinterview,
 );
 
+interviewRoute.post(
+  "/resume/pdf/:interviewId",
+  authMiddleware.authUser,
+  interviewControler.generateResume,
+);
+
 module.exports = interviewRoute;
