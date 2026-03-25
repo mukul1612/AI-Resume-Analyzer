@@ -25,4 +25,38 @@ async function genrateInterviewReport(req, res) {
     interviewReport,
   });
 }
-module.exports = { genrateInterviewReport };
+
+async function getInterviewReportById(req, res) {
+  const { interviewId } = req.params;
+  const interviewreport = await interviewReportModel.findById({
+    _id: interviewId,
+    user: req.user.id,
+  });
+  if (!interviewreport) {
+    return res.status(400).json({ message: "Interview report not found" });
+  }
+  res.status(200).json({
+    message: "Interview report fetched successfully",
+    interviewreport,
+  });
+}
+
+async function getAllinterview(req, res) {
+  const interviewReports = await interviewReportModel
+    .find({
+      user: req.user.id,
+    })
+    .sort({ createdAt: -1 })
+    .select(
+      "-resume -selfDescription -jobDescription -__v -technicalQuestion -behavioralQuestion -skillGaps -preparationPlan",
+    );
+  res.status(200).json({
+    message: "Interview report fetched successfully",
+    interviewReports,
+  });
+}
+module.exports = {
+  genrateInterviewReport,
+  getInterviewReportById,
+  getAllinterview,
+};

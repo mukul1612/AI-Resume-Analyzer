@@ -23,7 +23,7 @@ export const appRoutes = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "/kk", //"/interview/:interviewId",
+    path: "/interview/:interviewId",
     element: (
       <Protected>
         <Interview />

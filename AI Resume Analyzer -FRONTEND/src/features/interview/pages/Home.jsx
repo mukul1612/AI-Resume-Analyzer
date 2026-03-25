@@ -1,33 +1,34 @@
 import React, { useState, useRef } from "react";
 import "../style/home.scss";
-// import { useInterview } from "../hooks/useInterview.js";
+import { useInterview } from "../hooks/useInterview.js";
 import { useNavigate } from "react-router";
 
 const Home = () => {
-  //   const { loading, generateReport, reports } = useInterview();
+  const { loading, genrateReport, allReports } = useInterview();
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
   const resumeInputRef = useRef();
 
   const navigate = useNavigate();
 
-  //   const handleGenerateReport = async () => {
-  //     const resumeFile = resumeInputRef.current.files[0];
-  //     const data = await generateReport({
-  //       jobDescription,
-  //       selfDescription,
-  //       resumeFile,
-  //     });
-  //     navigate(`/interview/${data._id}`);
-  //   };
+  const handleGenerateReport = async () => {
+    const resumeFile = resumeInputRef.current.files[0];
+    const data = await genrateReport({
+      jobDescription,
+      selfDescription,
+      resumeFile,
+    });
 
-  //   if (loading) {
-  //     return (
-  //       <main className="loading-screen">
-  //         <h1>Loading your interview plan...</h1>
-  //       </main>
-  //     );
-  //   }
+    navigate(`/interview/${data._id}`);
+  };
+
+  if (loading) {
+    return (
+      <main className="loading-screen">
+        <h1>Loading your interview plan...</h1>
+      </main>
+    );
+  }
 
   return (
     <div className="home-page">
@@ -206,9 +207,7 @@ const Home = () => {
           <span className="footer-info">
             AI-Powered Strategy Generation &bull; Approx 30s
           </span>
-          <button onClick={""} className="generate-btn">
-            {" "}
-            {/* handleGenerateReport */}
+          <button onClick={handleGenerateReport} className="generate-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -224,11 +223,11 @@ const Home = () => {
       </div>
 
       {/* Recent Reports List */}
-      {/* {reports.length > 0 && (
+      {allReports.length > 0 && (
         <section className="recent-reports">
           <h2>My Recent Interview Plans</h2>
           <ul className="reports-list">
-            {reports.map((report) => (
+            {allReports.map((report) => (
               <li
                 key={report._id}
                 className="report-item"
@@ -247,7 +246,7 @@ const Home = () => {
             ))}
           </ul>
         </section>
-      )} */}
+      )}
 
       {/* Page Footer */}
       <footer className="page-footer">

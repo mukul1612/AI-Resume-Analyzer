@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/interview.scss";
-// import { useInterview } from "../hooks/useInterview.js";
+import { useInterview } from "../hooks/useInterview.js";
 import { useNavigate, useParams } from "react-router";
 
 const NAV_ITEMS = [
@@ -130,23 +130,22 @@ const RoadMapDay = ({ day }) => (
 // ── Main Component ────────────────────────────────────────────────────────────
 const Interview = () => {
   const [activeNav, setActiveNav] = useState("technical");
-  //   const { report, getReportById, loading, getResumePdf } = useInterview();
-  const report = {};
+  const { report, getReportById, loading, getResumePdf } = useInterview();
   const { interviewId } = useParams();
 
-  //   useEffect(() => {
-  //     if (interviewId) {
-  //       getReportById(interviewId);
-  //     }
-  //   }, [interviewId]);
+  useEffect(() => {
+    if (interviewId) {
+      getReportById(interviewId);
+    }
+  }, [interviewId]);
 
-  //   if (loading || !report) {
-  //     return (
-  //       <main className="loading-screen">
-  //         <h1>Loading your interview plan...</h1>
-  //       </main>
-  //     );
-  //   }
+  if (loading || !report) {
+    return (
+      <main className="loading-screen">
+        <h1>Loading your interview plan...</h1>
+      </main>
+    );
+  }
 
   const scoreColor =
     report.matchScore >= 80
@@ -201,11 +200,11 @@ const Interview = () => {
               <div className="content-header">
                 <h2>Technical Questions</h2>
                 <span className="content-header__count">
-                  {report.technicalQuestions?.length} questions
+                  {report.technicalQuestion?.length} questions
                 </span>
               </div>
               <div className="q-list">
-                {report.technicalQuestions?.map((q, i) => (
+                {report.technicalQuestion?.map((q, i) => (
                   <QuestionCard key={i} item={q} index={i} />
                 ))}
               </div>
@@ -217,11 +216,11 @@ const Interview = () => {
               <div className="content-header">
                 <h2>Behavioral Questions</h2>
                 <span className="content-header__count">
-                  {report.behavioralQuestions?.length} questions
+                  {report.behavioralQuestion?.length} questions
                 </span>
               </div>
               <div className="q-list">
-                {report.behavioralQuestions?.map((q, i) => (
+                {report.behavioralQuestion?.map((q, i) => (
                   <QuestionCard key={i} item={q} index={i} />
                 ))}
               </div>
