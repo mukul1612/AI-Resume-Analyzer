@@ -32,17 +32,19 @@ async function registerUserController(req, res) {
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1d" },
     );
-    res.cookie("token", token);
-    res
-      .status(201)
-      .json({
-        message: "User created successfully",
-        userDetals: {
-          username: user.username,
-          email: user.email,
-          id: user._id,
-        },
-      });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+    res.status(201).json({
+      message: "User created successfully",
+      userDetals: {
+        username: user.username,
+        email: user.email,
+        id: user._id,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -64,13 +66,15 @@ async function loginUserController(req, res) {
     process.env.JWT_SECRET_KEY,
     { expiresIn: "1d" },
   );
-  res.cookie("token", token);
-  res
-    .status(201)
-    .json({
-      message: "User logged in successfully",
-      userDetals: { username: user.username, email: user.email, id: user._id },
-    });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
+  res.status(201).json({
+    message: "User logged in successfully",
+    userDetals: { username: user.username, email: user.email, id: user._id },
+  });
 }
 
 async function logoutUserController(req, res) {
@@ -84,12 +88,10 @@ async function logoutUserController(req, res) {
 
 async function getMeController(req, res) {
   const uesr = await userModel.findById(req.user.id);
-  res
-    .status(200)
-    .json({
-      message: "User logged in successfully",
-      userDetals: { username: uesr.username, email: uesr.email, id: uesr._id },
-    });
+  res.status(200).json({
+    message: "User logged in successfully",
+    userDetals: { username: uesr.username, email: uesr.email, id: uesr._id },
+  });
 }
 
 module.exports = {
