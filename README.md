@@ -115,11 +115,4 @@ A full-stack **Gen AI-powered job preparation platform** that analyzes resumes, 
 - 📊 Analytics dashboard  
 - 📂 Multiple resume management  
 
----
 
-## 👨‍💻 Author
-
-**Mukul**  
-Frontend React Developer  
-
----
