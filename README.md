@@ -5,7 +5,7 @@ A full-stack **Gen AI-powered job preparation platform** that analyzes resumes, 
 ---
 
 ## 🌐 Live Demo
-👉 https://ai-resume-analyzer-sepia-two.vercel.app/login  
+👉 https://ai-resume-analyzer-sepia-two.vercel.app  
 
 ---
 
