@@ -17,8 +17,16 @@ export const useInterview = () => {
     throw new Error("useInterview must be used within a InterviewProvide");
   }
 
-  const { loading, setLoading, report, setReport, allReports, setAllReports } =
-    context;
+  const {
+    loading,
+    setLoading,
+    error,
+    setError,
+    report,
+    setReport,
+    allReports,
+    setAllReports,
+  } = context;
 
   const genrateReport = async ({
     jobDescription,
@@ -35,7 +43,8 @@ export const useInterview = () => {
       });
       setReport(response.interviewReport);
     } catch (error) {
-      console.log(error);
+      setError(error);
+
       return null;
     } finally {
       setLoading(false);
@@ -50,6 +59,7 @@ export const useInterview = () => {
       response = await getInterviewReport(interviewId);
       setReport(response.interviewreport);
     } catch (error) {
+      setError(error);
       console.log(error);
       return null;
     } finally {
@@ -65,6 +75,7 @@ export const useInterview = () => {
       response = await getAllinterview();
       setAllReports(response.interviewReports);
     } catch (error) {
+      setError(error);
       console.log(error);
     } finally {
       setLoading(false);
@@ -86,6 +97,7 @@ export const useInterview = () => {
       document.body.appendChild(link);
       link.click();
     } catch (error) {
+      setError(error);
       console.log(error);
     } finally {
       setLoading(false);
@@ -111,5 +123,7 @@ export const useInterview = () => {
     setReport,
     setAllReports,
     generatePdf,
+    error,
+    setError,
   };
 };

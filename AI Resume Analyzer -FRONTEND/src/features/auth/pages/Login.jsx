@@ -21,24 +21,24 @@ const Login = () => {
       </main>
     );
   }
-  // if (error) {
-  //   return (
-  //     <main>
-  //       <h1>
-  //         <p>
-  //           {error.message}{" "}
-  //           <Link
-  //             onClick={() => {
-  //               (window.location.reload(), setError(null));
-  //             }}
-  //           >
-  //             Try Again
-  //           </Link>{" "}
-  //         </p>
-  //       </h1>
-  //     </main>
-  //   );
-  // }
+  if (error) {
+    return (
+      <main>
+        <h1>
+          <p>
+            {error.message}{" "}
+            <Link
+              onClick={() => {
+                (window.location.reload(), setError(null));
+              }}
+            >
+              Try Again
+            </Link>{" "}
+          </p>
+        </h1>
+      </main>
+    );
+  }
   return (
     <main>
       <div className="form-container">

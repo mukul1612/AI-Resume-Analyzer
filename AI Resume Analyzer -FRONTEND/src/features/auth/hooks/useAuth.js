@@ -13,6 +13,7 @@ export const useAuth = () => {
       const response = await login({ email, password });
 
       setUser(response.userDetals);
+      localStorage.setItem("isLoggedIn", "true");
     } catch (error) {
       setError(error);
     } finally {
@@ -25,7 +26,7 @@ export const useAuth = () => {
       setLoading(true);
       const response = await register({ username, email, password });
       setUser(response.userDetals);
-      setLoading(false);
+      localStorage.setItem("isLoggedIn", "true");
     } catch (error) {
       setError(error);
     } finally {
@@ -38,6 +39,7 @@ export const useAuth = () => {
       setLoading(true);
       const response = await logout();
       setUser(null);
+      localStorage.removeItem("isLoggedIn");
     } catch (error) {
       setError(error);
     } finally {
@@ -58,7 +60,11 @@ export const useAuth = () => {
   };
 
   useEffect(() => {
-    handleGetMe();
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      handleGetMe();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   return {

@@ -18,3 +18,23 @@ body,
 .highlight {
     color: #ff0077;
 }
+
+.file-name-display {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #f0f4f8;
+    border-radius: 6px;
+    border: 1px solid #d1d9e6;
+    font-size: 0.9rem;
+    color: #334e68;
+    display: flex;
+    align-items: center;
+
+    strong {
+        margin-left: 5px;
+        color: #102a43;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

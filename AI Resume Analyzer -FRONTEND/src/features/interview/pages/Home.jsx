@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Children } from "react";
 import "../style/home.scss";
 import { useInterview } from "../hooks/useInterview.js";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 const Home = () => {
-  const { loading, genrateReport, allReports } = useInterview();
+  const { loading, error, genrateReport, allReports } = useInterview();
+
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
+  const [resumeFileName, setResumeFileName] = useState("");
   const resumeInputRef = useRef();
 
   const navigate = useNavigate();
@@ -22,14 +24,32 @@ const Home = () => {
     navigate(`/interview/${data._id}`);
   };
 
-  if (loading) {
+  if (error) {
     return (
-      <main className="loading-screen">
-        <h1>Loading your interview plan...</h1>
+      <main>
+        <h1>
+          <p>
+            {error.message}{" "}
+            <Link
+              onClick={() => {
+                (window.location.reload(), setError(null));
+              }}
+            >
+              Try Again
+            </Link>{" "}
+          </p>
+        </h1>
       </main>
     );
   }
 
+  if (loading) {
+    return (
+      <main className="loading-screen">
+        <h1>Loading ...</h1>
+      </main>
+    );
+  }
   return (
     <div className="home-page">
       {/* Page Header */}
@@ -134,6 +154,9 @@ const Home = () => {
                 <p className="dropzone__subtitle">PDF or DOCX (Max 5MB)</p>
                 <input
                   ref={resumeInputRef}
+                  onChange={(e) =>
+                    setResumeFileName(e.target.files[0]?.name || "")
+                  }
                   hidden
                   type="file"
                   id="resume"
@@ -141,6 +164,13 @@ const Home = () => {
                   accept=".pdf,.docx"
                 />
               </label>
+              {resumeFileName && (
+                <div className="file-name-display">
+                  <span>
+                    Selected: <strong>{resumeFileName}</strong>
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* OR Divider */}
