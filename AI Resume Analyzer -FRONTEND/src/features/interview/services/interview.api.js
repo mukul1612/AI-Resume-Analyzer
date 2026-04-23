@@ -64,7 +64,14 @@ export const downloadResume = async (interviewId) => {
     );
     return response.data;
   } catch (error) {
-    const message = error?.response?.data?.message || "Something went wrong";
+    // const message = error?.response?.data?.message || "Something went wrong";
+    let message;
+    if (error?.status === 503) {
+      message =
+        "Our AI is currently at capacity due to high demand. Please wait a moment ";
+    } else {
+      message = "An unexpected error occurred.";
+    }
     throw new Error(message);
   }
 };

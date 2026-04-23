@@ -13,7 +13,9 @@ export const useAuth = () => {
       const response = await login({ email, password });
 
       setUser(response.userDetals);
-      localStorage.setItem("isLoggedIn", "true");
+      if (response.userDetals) {
+        localStorage.setItem("isLoggedIn", "true");
+      }
     } catch (error) {
       setError(error);
     } finally {
@@ -26,7 +28,9 @@ export const useAuth = () => {
       setLoading(true);
       const response = await register({ username, email, password });
       setUser(response.userDetals);
-      localStorage.setItem("isLoggedIn", "true");
+      if (response.userDetals) {
+        localStorage.setItem("isLoggedIn", "true");
+      }
     } catch (error) {
       setError(error);
     } finally {
@@ -37,7 +41,7 @@ export const useAuth = () => {
   const handleLogout = async () => {
     try {
       setLoading(true);
-      const response = await logout();
+      const response = await logout({});
       setUser(null);
       localStorage.removeItem("isLoggedIn");
     } catch (error) {
@@ -47,25 +51,25 @@ export const useAuth = () => {
     }
   };
 
-  const handleGetMe = async () => {
-    try {
-      setLoading(true);
-      const response = await getMe({});
-      setUser(response.userDetals);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleGetMe = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await getMe({});
+  //     setUser(response.userDetals);
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      handleGetMe();
-    } else {
-      setLoading(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("isLoggedIn") === "true") {
+  //     handleGetMe();
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, []);
 
   return {
     user,
