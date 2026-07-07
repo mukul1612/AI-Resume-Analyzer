@@ -108,6 +108,7 @@ A full-stack **Gen AI-powered job preparation platform** that analyzes resumes, 
 
 ---
 
+
 ## 📌 Future Improvements
 
 - 📈 Resume scoring visualization  
